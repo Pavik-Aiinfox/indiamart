@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "user_microservice/index.js",
+        "use": "@vercel/node",
+        "config": { "maxLambdaSize": "50mb" }
+      },
+      {
+        "src": "buyer_microservices/index.js",
+        "use": "@vercel/node",
+        "config": { "maxLambdaSize": "50mb" }
+      }
+    ],
+    "routes": [
+      { "src": "/api(.*)", "dest": "/user_microservice/index.js" },
+      { "src": "/api/(.*)", "dest": "/buyer_microservices/index.js" }
+    ]
+  }
+  

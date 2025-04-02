@@ -1,0 +1,12 @@
+{
+    "name": "indiamart-backend",
+    "version": "1.0.0",
+    "scripts": {
+        "start:user": "cd user_microservice && node index.js",
+        "start:buyer": "cd buyer_microservices && node index.js",
+        "start": "concurrently \"npm run dev:user\" \"npm run dev:buyer\""
+    },
+    "dependencies": {
+        "concurrently": "^7.6.0"
+    }
+}
