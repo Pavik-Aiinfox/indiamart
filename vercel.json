@@ -13,7 +13,7 @@
       }
     ],
     "routes": [
-      { "src": "/api(.*)", "dest": "/user_microservice/index.js" },
+      { "src": "/api/(.*)", "dest": "/user_microservice/index.js" },
       { "src": "/api/(.*)", "dest": "/buyer_microservices/index.js" }
     ]
   }
