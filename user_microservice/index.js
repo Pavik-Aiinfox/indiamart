@@ -8,10 +8,12 @@ const connectDB=require('./src/config/db.config');
 
 const cors = require("cors");
 var corsOptions = {
-    origin: " http://localhost:5173",
+    origin: "*",  
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
-    Credential: true
-}
+    credentials: true
+};
+
+
 app.use(cors(corsOptions))
 
 
