@@ -9,7 +9,7 @@ const generateOTP = () => {
 };
 
 const generateSessionToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
+  return jwt.sign({ userId }, process.env.BUYER_JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
 };
 
 

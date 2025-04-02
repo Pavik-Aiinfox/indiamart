@@ -28,7 +28,7 @@ exports.saveBusinessInfo = async (req, res) => {
 
         await user.save();
 
-        const token = jwt.sign({ phone, userId: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+        const token = jwt.sign({ phone, userId: user._id }, process.env.BUYER_JWT_SECRET, { expiresIn: "7d" });
 
         res.json({ message: "Business information saved successfully", user, token });
     } catch (error) {
