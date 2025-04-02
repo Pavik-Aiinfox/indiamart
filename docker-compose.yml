@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  buyer_microservice:
+    build: ./buyer_microservices
+    container_name: buyer_microservice
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./buyer_microservices/.env
+    volumes:
+      - ./buyer_microservices:/app
+    working_dir: /app
+    command: ["node", "index.js"]
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+
+  user_microservice:
+    build: ./user_microservice
+    container_name: user_microservice
+    ports:
+      - "9000:9000"
+    env_file:
+      - ./user_microservice/.env
+    volumes:
+      - ./user_microservice:/app
+    working_dir: /app
+    command: ["node", "index.js"]
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
