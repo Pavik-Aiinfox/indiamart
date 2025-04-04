@@ -1,17 +1,13 @@
-const mongoose = require('mongoose');
-
+const mongoose = require("mongoose");
+ 
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  id: { type: String, required: true, unique: true },
   price: { type: Number, required: true },
-  pricingOptions: {
-    perUnit: { type: Number, default: null },
-    perPiece: { type: Number, default: null },
-    perDozen: { type: Number, default: null },
-  },
-  quantity: { type: Number, required: true },
-  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
-  pictures: [{ type: String }], 
+  unit: { type: String, required: true },
+  description: { type: String },
+  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
+  pictures: [{ type: String }], // Array of Base64 strings instead of file paths
+  sellerId: { type: mongoose.Schema.Types.ObjectId, ref: "Seller", required: true },
 });
-
-module.exports = mongoose.model('Product', productSchema);
+ 
+module.exports = mongoose.model("Product", productSchema);

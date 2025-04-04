@@ -93,9 +93,22 @@ app.post('/api/seller/prod', async (req, res) => {
     }
 });
 
+app.get('/api/seller/show', async (req, res) => {
+    try {
+        const response = await axios.get(`http://localhost:7000/api/seller/showProduct`, req.body);
+        res.json(response.data);
+    } catch (error) {
+        res.status(error.response?.status || 500).json({
+            message: "Error forwarding request to User Service",
+            error: error.response?.data || "Unknown error"
+        });
+    }
+});
+
+
 app.post('/api/category/added', async (req, res) => {
     try {
-        const response = await axios.post(`http://localhost:6000/api/category/add`, req.body);
+        const response = await axios.post(`http://localhost:5000/api/category/add`, req.body);
         res.json(response.data);
     } catch (error) {
         res.status(error.response?.status || 500).json({
@@ -107,7 +120,7 @@ app.post('/api/category/added', async (req, res) => {
 
 app.get('/api/category/getting', async (req, res) => {
     try {
-        const response = await axios.get(`http://localhost:6000/api/category/get`, req.body);
+        const response = await axios.get(`http://localhost:5000/api/category/get`, req.body);
         res.json(response.data);
     } catch (error) {
         res.status(error.response?.status || 500).json({
@@ -120,7 +133,7 @@ app.get('/api/category/getting', async (req, res) => {
 app.get('/api/category/get/:id', async (req, res) => {
     try {
         const {id} = req.params
-        const response = await axios.get(`http://localhost:6000/api/category/get/${id}`, req.body);
+        const response = await axios.get(`http://localhost:5000/api/category/get/${id}`, req.body);
         res.json(response.data);
     } catch (error) {
         res.status(error.response?.status || 500).json({
@@ -133,5 +146,5 @@ app.get('/api/category/get/:id', async (req, res) => {
 
 // Start API Gateway
 app.listen(PORT, () => {
-    console.log(`🚀 API Gateway running on http://localhost:${PORT}`);
+    console.log(`API Gateway running on http://localhost:${PORT}`);
 });
