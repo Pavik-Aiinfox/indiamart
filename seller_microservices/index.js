@@ -8,8 +8,9 @@ const app = express();
 const PORT = process.env.SELLER_PORT || 3001;
 const productRoutes = require('./src/routes/product.routes')
 
-app.use(express.json());
 
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 const corsOptions = {
   origin: '*',
@@ -17,6 +18,7 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
+
 
 
 app.use('/api/seller', sellerRoutes);
